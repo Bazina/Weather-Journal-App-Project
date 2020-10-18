@@ -36,7 +36,6 @@ app.get("/all", (req, res) => {
 });
 
 // Post Route
-const data = [];
 app.post("/addData", addData);
 
 function addData(req, res) {

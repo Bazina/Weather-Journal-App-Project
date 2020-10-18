@@ -26,9 +26,9 @@ function geneData(e) {
             postData("/addData", {date: newDate, temp: data.main.temp, content: feelings})
         })
         // Update UI data
-        .then(
+        .then(function (newData){
             updateUI()
-        )
+        })
     }
 };
 
@@ -40,10 +40,10 @@ const getWeather = async(baseURL, zip, apiKey) => {
         );
         // Save data in res as json
         const data = res.json();
-        console.log(data);
         return data;
     } catch(error) {
         console.log("Error", error);
+        alert("City not in US");
     }
 };
 
@@ -53,7 +53,6 @@ const getData = async(url = "") => {
     try {
         const data = await res.json();
         console.log(data);
-        return(data)
     } catch {
         console.log("Error", error);
     }
@@ -79,8 +78,9 @@ const postData = async(url = "", data = {}) => {
 }
 
 const updateUI = async() => {
-    const projectData = await getData("/all");
+    const req = await fetch("/all");
     try {
+        const projectData = await req.json();
         document.getElementById("date").innerHTML = `${projectData.date}`;
         document.getElementById("temp").innerHTML = `${projectData.temperature}&#8451;`;
         document.getElementById("content").innerHTML = `${projectData.feelings}`;
