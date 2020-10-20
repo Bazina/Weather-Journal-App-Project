@@ -13,9 +13,6 @@ const generate = document.getElementById("generate");
 generate.addEventListener("click", geneData);
 
 function geneData(e) {
-    if (zip.value===""){
-        alert("Enter your zip code");
-    } else {
         e.preventDefault();
         // Get user inputs
         const feelings = document.getElementById("feelings").value;
@@ -29,7 +26,6 @@ function geneData(e) {
         .then(function (newData){
             updateUI()
         })
-    }
 };
 
 // Get request data from API
@@ -43,7 +39,6 @@ const getWeather = async(baseURL, zip, apiKey) => {
         return data;
     } catch(error) {
         console.log("Error", error);
-        alert("City not in US");
     }
 };
 

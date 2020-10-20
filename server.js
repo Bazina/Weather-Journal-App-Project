@@ -23,7 +23,7 @@ app.use(express.static('website'));
 // Setup Server
 
 // Port number
-const port = 3000;
+const port = 5000;
 
 // listens when the server is running
 app.listen(port, () => {
